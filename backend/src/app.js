@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
-
+const productRoutes = require("./routes/productRoutes");
 const app = express();
 
 // Security middleware
@@ -24,5 +24,5 @@ app.get("/api/health", (req, res) => {
     message: "Optimized Retail Inventory API is running",
   });
 });
-
+app.use("/api/products", productRoutes);
 module.exports = app;
