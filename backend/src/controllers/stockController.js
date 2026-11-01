@@ -1,6 +1,6 @@
 
 const mongoose = require("mongoose");
-const Product = require("../models/Product");
+const Product = require("../models/product");
 const StockMovement = require("../models/StockMovement");
 
 // Create a stock IN or OUT movement

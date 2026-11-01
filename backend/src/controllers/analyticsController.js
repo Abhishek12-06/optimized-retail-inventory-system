@@ -1,5 +1,5 @@
 
-const Product = require("../models/Product");
+const Product = require("../models/product");
 const StockMovement = require("../models/StockMovement");
 
 // Get inventory and stock analytics
