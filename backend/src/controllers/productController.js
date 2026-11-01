@@ -1,3 +1,4 @@
+
 const Product = require("../models/Product");
 
 // Create a new product
@@ -116,10 +117,34 @@ const deleteProduct = async (req, res) => {
   }
 };
 
+// Get low-stock products
+const getLowStockProducts = async (req, res) => {
+  try {
+    const products = await Product.find({
+      isActive: true,
+      $expr: {
+        $lte: ["$quantity", "$reorderLevel"],
+      },
+    }).sort({ quantity: 1 });
+
+    res.status(200).json({
+      success: true,
+      count: products.length,
+      data: products,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 module.exports = {
   createProduct,
   getProducts,
   getProductById,
   updateProduct,
   deleteProduct,
+  getLowStockProducts,
 };
